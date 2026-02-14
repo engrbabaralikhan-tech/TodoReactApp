@@ -38,5 +38,16 @@ def create():
 
     return {'201': 'todo created successfully'}
 
+@app.route("/api/<int:id>", methods=['GET'])
+def show(id):
+    # todo = Todo.query.filter_by(id=id).first()
+    # if todo:
+    #     return jsonify(todo_serializer(todo))
+    # else:
+    #     return {'404': 'todo not found'}
+    return jsonify([*map(todo_serializer, Todo.query.filter_by(id=id).all())])
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)

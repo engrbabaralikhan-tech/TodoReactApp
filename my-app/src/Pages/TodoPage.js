@@ -6,6 +6,7 @@ export const TodoPage = () => {
   const [todos, setTodo] = useState([]);
   const [addTodo, setAddTodo] = useState('');
 
+  // fetch data from the backend and set it to the state
   const fetchData = () => {
     fetch("/api").then(response => {
       if (response.ok) {
@@ -14,14 +15,17 @@ export const TodoPage = () => {
     }).then(data => setTodo(data));
   }
 
+  // fetch data on component mount
   useEffect(() => {
     fetchData();
   }, []);
 
+  // handle form change
   const handleFormChange = (inputValue) => {
     setAddTodo(inputValue)
   }
 
+  // handle form submit
   const handleFormSubmit = async () => {
     const response = await fetch("/api/create", {
       method: "POST",
@@ -33,6 +37,7 @@ export const TodoPage = () => {
       })
     });
 
+    // if the response is ok, fetch the updated list of todos and clear the input field
     if (response.ok) {
       const message = await response.json();
       console.log(message);
