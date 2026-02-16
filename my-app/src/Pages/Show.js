@@ -18,17 +18,17 @@ export const Show = () => {
     }, [id]);
 
     return (
-        <div>
-        <h1>Show Page</h1>
+        <>
+        <h1>Todo Details</h1>
         {todo ? (
-            <ul>
-                <span>{todo.id}</span>
-                <li>{todo.content}</li>
-            </ul>
+            <div>
+                <p>Todo ID: {todo.id}</p>
+                <p>Todo item:{todo.content}</p>
+            </div>
         ) : (
             <p>Loading...</p>
         )}
         <Delete id={id} />
-        </div>
+        </>
     )
 }
