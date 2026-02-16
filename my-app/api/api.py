@@ -40,12 +40,31 @@ def create():
 
 @app.route("/api/<int:id>", methods=['GET'])
 def show(id):
-    # todo = Todo.query.filter_by(id=id).first()
-    # if todo:
-    #     return jsonify(todo_serializer(todo))
-    # else:
-    #     return {'404': 'todo not found'}
-    return jsonify([*map(todo_serializer, Todo.query.filter_by(id=id).all())])
+    todo = Todo.query.filter_by(id=id).first()
+    if todo:
+        return jsonify(todo_serializer(todo))
+    else:
+        return {'404': 'todo not found'}
+
+@app.route("/api/<int:id>", methods=['DELETE'])
+def delete(id):
+    todo = Todo.query.filter_by(id=id).first()
+    if todo:
+        db.session.delete(todo)
+        db.session.commit()
+        return {'204': 'todo deleted successfully'}
+    else:
+        return {'404': 'todo not found'}
+    
+# def delete(id):
+#     request_data = json.loads(request.data)
+#     todo = Todo.query.filter_by(id=request_data['id']).delete()
+#     if todo:
+#         db.session.commit()
+#         return {'204': 'todo deleted successfully'}
+#     else:
+#         return {'404': 'todo not found'}
+
 
 
 
