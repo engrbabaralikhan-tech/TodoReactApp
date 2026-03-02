@@ -1,4 +1,3 @@
 Just a notes for future work:
 
 1. Add update todo functionality
-2. Add css

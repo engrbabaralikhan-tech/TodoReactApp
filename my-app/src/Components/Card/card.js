@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styles from "./card.module.css";
 
 export const Card = ({ listOfTodos }) => {
   return (
     <>
+      <ul className={styles.cardContainer}>
       {listOfTodos.map((todo) => (
-        <ul key={todo.id}>
+        <li key={todo.id}>
           <span>{todo.id}</span>
-          <li>
-            <Link to={`/${todo.id}`}>{todo.content} </Link>
+            <Link to={`/${todo.id}`}>{todo.content} 
+            </Link>
           </li>    
-        </ul>
       ))}
+      </ul>
     </>
   );
 }

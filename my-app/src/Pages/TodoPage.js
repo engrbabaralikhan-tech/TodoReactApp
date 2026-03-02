@@ -51,7 +51,9 @@ export const TodoPage = () => {
     <>
       <h1>Todo List</h1>
       <Form userInput={addTodo} onFormChange={handleFormChange} onFormSubmit={handleFormSubmit} />
-      <Card listOfTodos={todos} />
+      <div>
+        <Card listOfTodos={todos} />
+      </div>
     </>
   )
 }
